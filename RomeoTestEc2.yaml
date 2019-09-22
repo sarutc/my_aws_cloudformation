@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A Romeo template - Craete t2.micro amzn2-hvm-2.0-x86_64-gp2
+Parameters:
+    LatestAmiId:
+      Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+      Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2' 
+Resources:
+    RomeoEC2Instance:
+        Type: "AWS::EC2::Instance"
+        Properties: 
+            ImageId: !Ref LatestAmiId
+            InstanceType: t2.micro
+            KeyName: romeo-sarutc
+#            BlockDeviceMappings:
+#               -
+#                    DeviceName: /dev/sdm
+#                    Ebs:
+#                        VolumeType: io1
+#                        Iops: 200
+#                       DeleteOnTermination: false
+#                        VolumeSize: 20
+    MyEIP:
+        Type: "AWS::EC2::EIP"
+        Properties:
+            InstanceId: !Ref RomeoEC2Instance
+        
+
