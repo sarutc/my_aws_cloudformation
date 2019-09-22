@@ -25,5 +25,3 @@ Resources:
       Tags:
         - Key: key
           Value: value
-
-Outputs:
