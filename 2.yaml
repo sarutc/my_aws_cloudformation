@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: A Sample template
+Resources:
+    RomeoEC2Instance:
+        Type: "AWS::EC2::Instance"
+        ImageID: "ami-048a01c78f7bae4aa"
+        InstanceType: t2.micro
+        KeyName: testkey
+        BlockDeviceMapping:
+            -
+                DeviceName: /dev/sdm
+                Ebs:
+                    volumeType: io1
+                    Ipos: 200
+                    DeleteOnTermination: false
+                    VolumeSize: 20
+    MyEIP:
+        Type: "AWS::EC2::EIP"
+        Properties:
+            InstanceID: !Ref RomeoEC2Instance
+        
+
